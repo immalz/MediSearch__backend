@@ -14,14 +14,57 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/medicamentos",
+							"raw": "http://localhost:4000/api/medicamentos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
+								"api",
 								"medicamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/medicamentos/:medicamentosId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/medicamentos/5fb68c674960f8076ab5ca0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"medicamentos",
+								"5fb68c674960f8076ab5ca0d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/medicamentos/:medicamentosId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/medicamentos/5fb68c674960f8076ab5ca0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"medicamentos",
+								"5fb68c674960f8076ab5ca0d"
 							]
 						}
 					},
@@ -31,10 +74,16 @@
 					"name": "/medicamentos",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYjZhYWI3OWEwODg2MGY5Y2MwNmVlNiIsImlhdCI6MTYwNTgwNjc3NSwiZXhwIjoxNjA1ODkzMTc1fQ.HIVpx5IKjTuEBUmwQ6WFT3EjDKE4Gq332mPTllA9QjI",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Dolocordalan\",\r\n    \"category\": \"pastillas\",\r\n    \"type\": \"generico\",\r\n    \"brand\": \"BRISTOL-MYERS SQUIBB\",\r\n    \"company\": \"MiFarma\",\r\n    \"price\": 2.00,\r\n    \"imgURL\": \"https://liderdelivery.com/wp-content/uploads/2020/06/dolocordralan-1.jpg\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Diclofenatico\",\r\n    \"category\": \"pastillas\",\r\n    \"type\": \"generico\",\r\n    \"brand\": \"Unicom\",\r\n    \"company\": \"MediFarma\",\r\n    \"price\": 1.50,\r\n    \"imgURL\": \"https://liderdelivery.com/wp-content/uploads/2020/06/dolocordralan-1.jpg\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -42,14 +91,45 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/medicamentos",
+							"raw": "http://localhost:4000/api/medicamentos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
+								"api",
 								"medicamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/medicamentos/:medicamentoId",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dolocordalan Forte\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/medicamentos/5fb68c674960f8076ab5ca0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"medicamentos",
+								"5fb68c674960f8076ab5ca0d"
 							]
 						}
 					},
@@ -60,12 +140,85 @@
 		},
 		{
 			"name": "Users",
-			"item": [],
+			"item": [
+				{
+					"name": "/users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "auth",
-			"item": [],
+			"name": "Auth",
+			"item": [
+				{
+					"name": "/api/auth/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"MariaDB\",\r\n    \"email\": \"mariadb@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"testing@gmail.com\",\r\n    \"password\": \"contraseñasegura\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		}
 	],
