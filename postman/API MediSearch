@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "2c5ddde9-ca00-4f16-8605-e06747dbb9ec",
+		"name": "API MediSearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Medicines",
+			"item": [
+				{
+					"name": "/medicamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/medicamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"medicamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/medicamentos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dolocordalan\",\r\n    \"category\": \"pastillas\",\r\n    \"type\": \"generico\",\r\n    \"brand\": \"BRISTOL-MYERS SQUIBB\",\r\n    \"company\": \"MiFarma\",\r\n    \"price\": 2.00,\r\n    \"imgURL\": \"https://liderdelivery.com/wp-content/uploads/2020/06/dolocordralan-1.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/medicamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"medicamentos"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
