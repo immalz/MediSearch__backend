@@ -2,9 +2,16 @@ import Medicine from "../models/Medicine";
 
 export const createMedicine = async(req, res) => {
 
-    const { name, category, price, type, imgURL, brand, company } = req.body;
+    const { name, category, price, type, imgURL, company } = req.body;
 
-    const newMedicine = new Medicine({ name, category, type, price, imgURL, brand, company });
+    const newMedicine = new Medicine({
+        name,
+        category,
+        type,
+        price,
+        imgURL,
+        company
+    });
 
     const medicineSaved = await newMedicine.save();
 
@@ -14,6 +21,19 @@ export const createMedicine = async(req, res) => {
 export const getMedicines = async(req, res) => {
     const medicines = await Medicine.find();
     res.json(medicines);
+}
+
+export const countMedicines = async(req, res) => {
+    const totalMedicines = await Medicine.find().count();
+    res.json(totalMedicines);
+}
+
+export const searchMedicine = async(req, res) => {
+    const { medicineName } = req.params;
+    const param = new RegExp(medicineName);
+
+    const medicinesFound = await Medicine.find({ name: param });
+    res.status(200).json(medicinesFound);
 }
 
 export const getMedicineById = async(req, res) => {

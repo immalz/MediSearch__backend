@@ -3,7 +3,6 @@ import { Schema, model } from 'mongoose';
 const medicineSchema = new Schema({
     name: String,
     category: String,
-    brand: String,
     company: String,
     type: String,
     price: Number,
