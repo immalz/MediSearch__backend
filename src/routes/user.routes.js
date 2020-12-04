@@ -16,4 +16,10 @@ router.post('/', [
     verifySignup.checkRolesExisted
 ], userCtrl.createUser)
 
+router.delete('/:UserId', [
+    authJwt.verifyToken,
+    authJwt.isAdmin,
+    verifySignup.checkRolesExisted
+], userCtrl.deleteUser);
+
 export default router;

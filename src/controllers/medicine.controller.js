@@ -1,21 +1,25 @@
 import Medicine from "../models/Medicine";
+import path from 'path';
+import fs from 'fs-extra';
 
 export const createMedicine = async(req, res) => {
 
-    const { name, category, price, type, imgURL, company } = req.body;
+    const { name, category, price, type, company } = req.body;
+
+    console.log(req.file);
 
     const newMedicine = new Medicine({
         name,
         category,
         type,
         price,
-        imgURL,
+        imgURL: req.file.path,
         company
     });
 
     const medicineSaved = await newMedicine.save();
 
-    res.status(201).json(medicineSaved);
+    res.status(201).json({ medicineSaved });
 }
 
 export const getMedicines = async(req, res) => {
@@ -24,7 +28,7 @@ export const getMedicines = async(req, res) => {
 }
 
 export const countMedicines = async(req, res) => {
-    const totalMedicines = await Medicine.find().count();
+    const totalMedicines = await Medicine.find().countDocuments();
     res.json(totalMedicines);
 }
 
@@ -54,7 +58,14 @@ export const deleteProductById = async(req, res) => {
 
     const { medicineId } = req.params;
 
-    await Medicine.findByIdAndRemove(medicineId);
+    const medicine = await Medicine.findOneAndDelete({ _id: medicineId });
 
-    res.status(204).json();
+    if (medicine) {
+        await fs.unlink(path.resolve(medicine.imgURL));
+    }
+
+    res.status(204).json({
+        message: 'Medicine Deleted',
+        medicine
+    });
 }
