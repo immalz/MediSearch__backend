@@ -1,12 +1,26 @@
 import { Schema, model } from "mongoose";
+import bcrypt from 'bcryptjs';
 
 const pharmacySchema = new Schema({
+    razonSocial: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
     },
     nameOwner: {
         type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    phone: {
+        type: Number,
         required: true,
     },
     RUC: {
@@ -18,11 +32,6 @@ const pharmacySchema = new Schema({
         type: String,
         required: true,
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
     latitude: {
         type: Number,
         required: true,
@@ -31,22 +40,29 @@ const pharmacySchema = new Schema({
         type: Number,
         required: true,
     },
-    phone: {
-        type: Number,
-        required: true,
-    },
     photo: {
         type: String,
         required: true,
     },
-    razonSocial: {
-        type: String,
-        required: true,
-    },
+    roles: [{
+        ref: "Role",
+        type: Schema.Types.ObjectId,
+        autopopulate: true
+    }]
 }, {
     timestamps: true,
     versionKey: false
 })
 
+pharmacySchema.statics.encryptPassword = async(password) => {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+}
+
+pharmacySchema.statics.comparePassword = async(password, receivedPassword) => {
+    return await bcrypt.compare(password, receivedPassword);
+}
+
+pharmacySchema.plugin(require('mongoose-autopopulate'));
 
 export default model('Pharmacy', pharmacySchema)
