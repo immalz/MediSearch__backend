@@ -1,7 +1,12 @@
 import { Router } from "express";
+import path from 'path';
 import multer from 'multer';
 import { v4 as uuid } from 'uuid';
-import path from 'path';
+
+import { authJwt } from '../middlewares';
+import * as medicinesCtrl from "../controllers/medicine.controller";
+
+const router = Router();
 
 const storage = multer.diskStorage({
     destination: 'uploads',
@@ -26,27 +31,25 @@ const upload = multer({
     }
 }).single('imgURL');
 
-// import path from 'path';
-const router = Router();
-
-import * as medicinesCtrl from "../controllers/medicine.controller";
-import { authJwt } from '../middlewares';
-
-
-router.post('/', upload, medicinesCtrl.createMedicine); // [authJwt.verifyToken, authJwt.isModerator ],
-
-
+// CONSULTA MEDICINES
+router.post('/:_id', upload, medicinesCtrl.createMedicine); // [authJwt.verifyToken, authJwt.isModerator ],
 
 router.get('/', medicinesCtrl.getMedicines);
 
 router.get('/count', medicinesCtrl.countMedicines);
 
-router.get('/searchMedicine/:medicineName', medicinesCtrl.searchMedicine);
+router.get('/last', medicinesCtrl.lastMedicineAgree);
 
 router.get('/:medicineId', medicinesCtrl.getMedicineById);
 
-router.put('/:medicineId', [authJwt.verifyToken, authJwt.isAdmin], medicinesCtrl.updateMedicineById);
+router.put('/:medicineId', medicinesCtrl.updateMedicineById); //[authJwt.verifyToken, authJwt.isAdmin]
 
-router.delete('/:medicineId', [authJwt.verifyToken, authJwt.isAdmin], medicinesCtrl.deleteProductById);
+router.delete('/:medicineId', medicinesCtrl.deleteProductById); //
+
+
+// CONSULTA DE MEDICAMENTOS POR FARMACIA
+
+router.get('/pharmacy/:_id', medicinesCtrl.getMedicinesForPharmacy);
+
 
 export default router;

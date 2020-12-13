@@ -1,3 +1,4 @@
 import * as authJwt from './auth.jwt';
 import * as verifySignup from './verifiySignup'
-export { authJwt, verifySignup };
+import * as verifyRequest from './verifyRequest'
+export { authJwt, verifySignup, verifyRequest };

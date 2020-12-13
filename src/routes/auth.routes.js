@@ -11,4 +11,8 @@ router.post('/signup', [
 
 router.post('/signin', authCtrl.signIn);
 
+/* PARA LAS FARMACIAS */
+
+router.post('/signin/pharmacy', authCtrl.signInPharm);
+
 export default router;

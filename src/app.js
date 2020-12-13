@@ -13,6 +13,8 @@ import userRoutes from './routes/user.routes'
 const app = express();
 createRoles();
 
+
+
 app.set('pkg', pkg);
 
 //cambiar la configuracion cors para produccion

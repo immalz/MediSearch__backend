@@ -19,6 +19,10 @@ const pharmacySchema = new Schema({
         required: true,
         unique: true
     },
+    password: {
+        type: String,
+        required: true,
+    },
     phone: {
         type: Number,
         required: true,
@@ -34,16 +38,20 @@ const pharmacySchema = new Schema({
     },
     latitude: {
         type: Number,
-        required: true,
+        required: true
     },
-    length: {
+    longitude: {
         type: Number,
-        required: true,
+        required: true
     },
-    photo: {
+    imgURL: {
         type: String,
-        required: true,
+        required: true
     },
+    medicines: [{
+        ref: "Medicine",
+        type: Schema.Types.ObjectId
+    }],
     roles: [{
         ref: "Role",
         type: Schema.Types.ObjectId,
@@ -52,7 +60,7 @@ const pharmacySchema = new Schema({
 }, {
     timestamps: true,
     versionKey: false
-})
+});
 
 pharmacySchema.statics.encryptPassword = async(password) => {
     const salt = await bcrypt.genSalt(10);

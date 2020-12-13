@@ -3,19 +3,26 @@ import bcrypt from 'bcryptjs';
 const UserSchema = new Schema({
     username: {
         type: String,
+        required: true,
         unique: true
     },
     email: {
         type: String,
-        unique: true
+        unique: true,
+        required: true,
     },
 
     password: {
         type: String,
         required: true
     },
-    foto: {
+    imgURL: {
         type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
     },
     historial: [{
         ref: "Medicine",

@@ -1,19 +1,39 @@
 import { Router } from "express";
+import * as authCtrl from '../controllers/auth.controllers';
+import * as pharmCtrl from '../controllers/pharm.controller';
+import { authJwt } from '../middlewares';
+import { verifySignup, verifyRequest } from '../middlewares'
 
 const router = Router();
 
-import * as pharmCtrl from '../controllers/pharm.controller';
-import { authJwt } from '../middlewares';
-
 router.get('/', pharmCtrl.getPharms);
 
-router.post('/request', pharmCtrl.requestPharms);
+router.get('/count', pharmCtrl.countPharms);
 
-router.get('/request', pharmCtrl.getRequestPharms);
+router.get('/:id', pharmCtrl.getPharmById);
 
-router.delete('/request/:pharmId', pharmCtrl.deleteRequestPharms);
+router.get('/last', pharmCtrl.lastPharmAgree);
 
-router.get('/count', [authJwt.verifyToken, authJwt.isAdmin], pharmCtrl.countPharms);
+router.get('/request/count', pharmCtrl.countRequestPharms);
+
+router.get('/request', pharmCtrl.getRequestPharms); // [authJwt.verifyToken, authJwt.isAdmin]
+
+router.get('/medicine/count/:_id', pharmCtrl.countMedicineforPharm);
+
+router.post('/', [
+    verifySignup.checkDuplicatedUsernameOrEmail,
+    verifySignup.checkRolesExisted
+], authCtrl.signUpPharms);
+
+router.post('/request', verifyRequest.checkDuplicatedRucOrEmailorRazonSocial, pharmCtrl.createRequestPharms);
+
+router.put('/:pharmId', pharmCtrl.updatePharmacyById);
+
+router.delete('/:pharmId', pharmCtrl.deletePharm);
+
+router.delete('/request/:pharmId', pharmCtrl.deleteRequestPharms); // , [authJwt.verifyToken, authJwt.isAdmin]
+
+
 
 
 

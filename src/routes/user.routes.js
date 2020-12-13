@@ -8,7 +8,7 @@ router.get('/', userCtrl.getUsers);
 
 router.get('/count', userCtrl.countUsers);
 
-router.get('/:id', userCtrl.findRole);
+router.get('/last', userCtrl.lastUserAgree);
 
 router.post('/', [
     authJwt.verifyToken,
@@ -16,10 +16,6 @@ router.post('/', [
     verifySignup.checkRolesExisted
 ], userCtrl.createUser)
 
-router.delete('/:UserId', [
-    authJwt.verifyToken,
-    authJwt.isAdmin,
-    verifySignup.checkRolesExisted
-], userCtrl.deleteUser);
+router.delete('/:UserId', userCtrl.deleteUser);
 
 export default router;
