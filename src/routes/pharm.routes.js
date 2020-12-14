@@ -10,9 +10,9 @@ router.get('/', pharmCtrl.getPharms);
 
 router.get('/count', pharmCtrl.countPharms);
 
-router.get('/:id', pharmCtrl.getPharmById);
-
 router.get('/last', pharmCtrl.lastPharmAgree);
+
+router.get('/:id', pharmCtrl.getPharmById);
 
 router.get('/request/count', pharmCtrl.countRequestPharms);
 
