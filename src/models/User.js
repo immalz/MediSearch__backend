@@ -17,12 +17,10 @@ const UserSchema = new Schema({
         required: true
     },
     imgURL: {
-        type: String,
-        required: true
+        type: String
     },
     address: {
-        type: String,
-        required: true
+        type: String
     },
     historial: [{
         ref: "Medicine",
