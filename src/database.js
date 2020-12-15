@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+require('dotenv').config();
 
-mongoose.connect('mongodb://localhost/MediSearch', {
+mongoose.connect(process.env.DB_CONNECT, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
