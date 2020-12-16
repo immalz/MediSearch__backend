@@ -10,6 +10,6 @@ require("regenerator-runtime/runtime");
 
 require('dotenv').config();
 
-_app["default"].listen(process.env.PORT);
+_app["default"].listen(process.env.PORT || 3000);
 
 console.log('Server on port', process.env.PORT);
