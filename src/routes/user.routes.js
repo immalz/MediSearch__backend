@@ -6,11 +6,11 @@ import { authJwt, verifySignup } from "../middlewares";
 
 router.get('/', userCtrl.getUsers);
 
-router.get('/:id', userCtrl.getUserById);
-
 router.get('/count', userCtrl.countUsers);
 
 router.get('/last', userCtrl.lastUserAgree);
+
+router.get('/:id', userCtrl.getUserById);
 
 router.post('/', [
     authJwt.verifyToken,

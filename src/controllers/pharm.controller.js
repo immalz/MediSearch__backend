@@ -24,8 +24,7 @@ export const updatePharmacyById = async(req, res) => {
         address,
         latitude,
         longitude,
-        imgURL,
-        password
+        imgURL
     } = req.body;
 
     const myquery = { _id: req.params.pharmId };
@@ -40,8 +39,7 @@ export const updatePharmacyById = async(req, res) => {
         address,
         latitude,
         longitude,
-        imgURL,
-        password: await Pharm.encryptPassword(password)
+        imgURL
     }, {
         new: true
     })

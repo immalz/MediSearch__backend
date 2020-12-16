@@ -20,8 +20,7 @@ export const updateUserById = async(req, res) => {
         email,
         phone,
         address,
-        imgURL,
-        password
+        imgURL
     } = req.body;
 
     const myquery = { _id: req.params.id };
@@ -31,8 +30,7 @@ export const updateUserById = async(req, res) => {
         email,
         phone,
         address,
-        imgURL,
-        password: await User.encryptPassword(password)
+        imgURL
     }, {
         new: true
     })
