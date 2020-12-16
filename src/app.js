@@ -19,6 +19,7 @@ createRoles();
 
 app.set('pkg', pkg);
 
+//cambiar la configuracion cors para produccion
 app.use(cors());
 
 app.use('/uploads', express.static(path.resolve('uploads')));
