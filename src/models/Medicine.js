@@ -14,11 +14,22 @@ const medicineSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true
     },
-    type: {
+    maker: {
         type: String,
+    },
+    condition: {
+        type: String,
+    },
+    type: {
+        ref: "Type",
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    unit_price: {
+        type: Number,
         required: true,
     },
-    price: {
+    unit_package: {
         type: Number,
         required: true,
     },

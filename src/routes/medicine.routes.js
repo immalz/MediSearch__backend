@@ -20,7 +20,7 @@ const upload = multer({
     dest: path.join(__dirname, '../../uploads'),
     limit: { fileSize: 2000000 },
     fileFilter: (req, file, cb) => {
-        const filetypes = /jpeg|jpg|png|gif/;
+        const filetypes = /jpeg|jpg|png|webp|jfif/;
         const mimetype = filetypes.test(file.mimetype);
         const extname = filetypes.test(path.extname(file.originalname));
 

@@ -10,12 +10,11 @@ import medicineRoutes from './routes/medicine.routes';
 import authRoutes from './routes/auth.routes';
 import pharmRoutes from './routes/pharm.routes';
 
-import { createRoles } from './libs/initialSetup'
+import { createRoles, createTypes } from './libs/initialSetup'
 import userRoutes from './routes/user.routes'
 const app = express();
 createRoles();
-
-
+createTypes();
 
 app.set('pkg', pkg);
 

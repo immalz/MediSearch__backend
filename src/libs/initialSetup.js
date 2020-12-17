@@ -1,5 +1,5 @@
 import Role from "../models/Role";
-import Pharmacy from "../models/Pharmacy";
+import Type from "../models/Type";
 
 
 export const createRoles = async() => {
@@ -22,15 +22,17 @@ export const createRoles = async() => {
 }
 
 
-export const createPharms = async() => {
+export const createTypes = async() => {
     try {
-        const count = await Pharmacy.estimatedDocumentCount()
+        const count = await Type.estimatedDocumentCount()
 
         if (count > 0) return;
 
         const values = await Promise.all([
-            new Pharmacy({ name: 'InkaFarma', direction: 'Calle123' }).save(),
-            new Pharmacy({ name: 'MiFarma', direction: 'Calle321' }).save()
+            new Type({ name: 'Pastilla' }).save(),
+            new Type({ name: 'Jarabe' }).save(),
+            new Type({ name: 'Pildora' }).save(),
+            new Type({ name: 'Crema' }).save()
         ]);
 
         console.log(values);
