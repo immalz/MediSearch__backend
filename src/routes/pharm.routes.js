@@ -12,11 +12,12 @@ router.get('/count', pharmCtrl.countPharms);
 
 router.get('/last', pharmCtrl.lastPharmAgree);
 
+router.get('/request', pharmCtrl.getRequestPharms); // [authJwt.verifyToken, authJwt.isAdmin]
+
 router.get('/:id', pharmCtrl.getPharmById);
 
 router.get('/request/count', pharmCtrl.countRequestPharms);
 
-router.get('/request', pharmCtrl.getRequestPharms); // [authJwt.verifyToken, authJwt.isAdmin]
 
 router.get('/medicine/count/:_id', pharmCtrl.countMedicineforPharm);
 

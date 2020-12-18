@@ -3,17 +3,19 @@ import Medicine from '../models/Medicine';
 import path from 'path';
 import fs from 'fs-extra';
 import Type from "../models/Type";
-const { ObjectID } = require('mongodb');
 
 export const createMedicine = async(req, res) => {
 
-    const { name, category, price, type } = req.body;
+    const { name, category, price, unitPackage, maker, condition, type } = req.body;
     const pharmacy = await Pharmacy.findById(req.params);
     const newMedicine = new Medicine({
         name,
         category,
         type,
         price,
+        maker,
+        unitPackage,
+        condition,
         imgURL: req.file.path,
         company: pharmacy
     });
@@ -25,7 +27,7 @@ export const createMedicine = async(req, res) => {
 }
 
 export const getMedicines = async(req, res) => {
-    const medicines = await Medicine.find().populate('company', 'type');
+    const medicines = await Medicine.find().populate('company');
     res.status(200).json(medicines);
 }
 
@@ -53,11 +55,11 @@ export const lastMedicineAgree = async(req, res) => {
 }
 
 export const updateMedicineById = async(req, res) => {
-    const { name, category, type, price } = req.body;
+    const { name, category, price, unitPackage, maker, condition, type } = req.body;
 
     const myquery = { _id: req.params.medicineId };
 
-    const updatedMedicine = await Medicine.updateOne(myquery, { name, category, type, price }, {
+    const updatedMedicine = await Medicine.updateOne(myquery, { name, category, price, unitPackage, maker, condition, type }, {
         new: true
     })
 
@@ -97,6 +99,13 @@ export const getTypes = async(req, res) => {
     res.status(200).json(types);
 }
 
+export const getTypeById = async(req, res) => {
+    const { typeId } = req.params;
+
+    const types = await Type.find({ _id: typeId });
+    res.status(200).json(types);
+}
+
 export const countTypes = async(req, res) => {
     const count = await Type.countDocuments();
 
@@ -107,8 +116,8 @@ export const deleteTypeById = async(req, res) => {
 
     const { typeId } = req.params;
 
-    const type = await Type.findByIdAndDelete(typeId);
+    await Type.findByIdAndDelete(typeId);
 
     res.status(204).json({ message: 'Tipo de medicamento Eliminado' });
-
+    x
 }

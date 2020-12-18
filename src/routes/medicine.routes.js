@@ -42,9 +42,17 @@ router.get('/last', medicinesCtrl.lastMedicineAgree);
 
 router.get('/:medicineId', medicinesCtrl.getMedicineById);
 
+router.get('/types/all', medicinesCtrl.getTypes);
+
+router.get('/types/:typeId', medicinesCtrl.getTypeById);
+
+router.get('/types/count', medicinesCtrl.countTypes);
+
 router.put('/:medicineId', medicinesCtrl.updateMedicineById); //[authJwt.verifyToken, authJwt.isAdmin]
 
 router.delete('/:medicineId', medicinesCtrl.deleteProductById); //
+
+router.delete('/types/:typeId', medicinesCtrl.deleteTypeById);
 
 
 // CONSULTA DE MEDICAMENTOS POR FARMACIA

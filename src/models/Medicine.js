@@ -20,16 +20,20 @@ const medicineSchema = new Schema({
     condition: {
         type: String,
     },
+    // type: {
+    //     ref: "Type",
+    //     type: Schema.Types.ObjectId,
+    //     required: true
+    // }
     type: {
-        ref: "Type",
-        type: Schema.Types.ObjectId,
+        type: String,
         required: true
     },
-    unit_price: {
+    price: {
         type: Number,
         required: true,
     },
-    unit_package: {
+    unitPackage: {
         type: Number,
         required: true,
     },
